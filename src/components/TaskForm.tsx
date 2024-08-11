@@ -9,7 +9,7 @@ export const TaskForm = () => {
     const [task, setTasks] = useState({
         title: "",
         description: "",
-        completed: false
+        status: "PENDING"
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
