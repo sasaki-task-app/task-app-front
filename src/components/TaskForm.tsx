@@ -1,9 +1,9 @@
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {addTask, editTask} from '../features/tasks/taskSlice';
 import {v4 as uuid} from "uuid"
 import {useNavigate, useParams} from "react-router-dom";
+import {createTaskThunk, updateTaskThunk} from "../thunks/taskThunks";
 
 export const TaskForm = () => {
     const [task, setTasks] = useState({
@@ -31,9 +31,11 @@ export const TaskForm = () => {
         e.preventDefault()
 
         if (params.id) {
-            dispatch(editTask(task));
+            // @ts-ignore
+            dispatch(updateTaskThunk(task));
         } else {
-            dispatch(addTask({
+            // @ts-ignore
+            dispatch(createTaskThunk({
                 ...task,
                 id: uuid()
             }))
